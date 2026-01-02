@@ -4,25 +4,35 @@ def show_screen(matrix):
     height = len(matrix)
     width = len(matrix[0])
 
-    ###Printing the matrix
     #upper-border outside the matrix
     print(f" _{(width-2)*" "}_")
-    #printing first row
-    print(f"|{width*" "}|")
 
-    #middle rows
-    for row in range(height-2): #-2 to execlude first and last rows
-        print(f" {width*" "} ")
+    #bellow loop is to print the actual matrix
+    counter = 0 #to keep track of which row in the loop
+    for row in matrix:
+        #printing first row
+        if (counter == 0):
+            print(f"|{"".join(row)}|")
 
-    #last row
-    print(f"|{width*" "}|")
-    #upper-border outside the matrix
+        #last row
+        elif (counter == (height-1)):
+            print(f"|{"".join(row)}|")
+
+        #middle rows
+        else:
+            print(f" {"".join(row)} ")
+        
+        counter +=1
+
+    #lower-border outside the matrix
     print(f" ‾{(width-2)*" "}‾")
 
 #options is an array of strings repersenting user choices
 #message is the message represented to the user before selecting an item
 def get_input(message, options):
     option_range = len(options)
+
+    user_choice = None
 
     print(f"{message}")
     while True:
@@ -33,9 +43,10 @@ def get_input(message, options):
             user_choice = int(input(">"))
             
             if user_choice in range(1,option_range+1):
-                print(user_choice,options[user_choice-1])
                 break
             else:
                 print(f"\nPlease enter a number between 1 and {option_range}")
         except:
             print("\nPlease enter an integer.") #To catch decimals and letters
+    
+    return user_choice
