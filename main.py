@@ -23,8 +23,6 @@ while True: #game loop
     ut.show_screen(map)
 
     while True: #input loop
-        valid_move = False
-
         move = ut.get_input("Choose the direction of your movement:",["Up","Down","Right","Left"])
         #1->Up | 2->Down | 3->Right | 4->Left
         #Up: pos_y - 1 | Down: pos_y + 1 | Right: pos_x + 1 | Left: pos_x - 1

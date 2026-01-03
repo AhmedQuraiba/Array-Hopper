@@ -1,6 +1,7 @@
 #This file contains generic methods mostly unrelated to game behaviour
 
 def show_screen(matrix):
+    print("\033[H\033[J", end="")
     height = len(matrix)
     width = len(matrix[0])
 
