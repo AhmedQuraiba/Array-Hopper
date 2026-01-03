@@ -1,4 +1,6 @@
 import utils as ut
+import keyboard as kb
+import time
 
 size = 20
 map =[]
@@ -19,33 +21,33 @@ new_pos_y = 0               #New pos vars are to keep track of both pos after an
 new_pos_x = 0               #They will be made equal to pos once a move is completed
 map[pos_y][pos_x] = "X"
 
+ut.show_screen(map)
+
 while True: #game loop
-    ut.show_screen(map)
 
-    while True: #input loop
-        valid_move = False
-
-        move = ut.get_input("Choose the direction of your movement:",["Up","Down","Right","Left"])
-        #1->Up | 2->Down | 3->Right | 4->Left
-        #Up: pos_y - 1 | Down: pos_y + 1 | Right: pos_x + 1 | Left: pos_x - 1
-
-        if (move == 1 and (new_pos_y-1)>=0):
-            new_pos_y-=1
-            break
-        elif (move == 2 and (new_pos_y+1)<=(size-1)):
-            new_pos_y+=1
-            break
-        elif (move == 3 and (new_pos_x+1)<=(size-1)):
-            new_pos_x+=1
-            break
-        elif (move == 4 and (new_pos_x-1)>=0):
-            new_pos_x-=1
-            break
-        else:
-            print("You can't move in that direction.")
+    while True: #Input loop
+        if kb.is_pressed("w") or kb.is_pressed("up"):
+            if (new_pos_y-1)>=0:
+                new_pos_y-=1
+                break
+        elif kb.is_pressed("s") or kb.is_pressed("down"):
+            if (new_pos_y+1)<=(size-1):
+                new_pos_y+=1
+                break
+        elif kb.is_pressed("d") or kb.is_pressed("right"):
+            if (new_pos_x+1)<=(size-1):
+                new_pos_x+=1
+                break
+        elif kb.is_pressed("a") or kb.is_pressed("left"):
+            if (new_pos_x-1)>=0:
+                new_pos_x-=1
+                break
     
     map[pos_y][pos_x] = " "
     map[new_pos_y][new_pos_x] = "X"
 
     pos_y = new_pos_y
     pos_x = new_pos_x
+
+    ut.show_screen(map)
+    time.sleep(0.2)
