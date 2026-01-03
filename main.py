@@ -26,6 +26,8 @@ ut.show_screen(map)
 while True: #game loop
 
     while True: #Input loop
+        time.sleep(0.01) #To avoid overwhelming the cpu
+
         if kb.is_pressed("w") or kb.is_pressed("up"):
             if (new_pos_y-1)>=0:
                 new_pos_y-=1
