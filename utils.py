@@ -1,6 +1,9 @@
 #This file contains generic methods mostly unrelated to game behaviour
+from os import system
+
 
 def show_screen(matrix):
+    system("clear||cls")
     height = len(matrix)
     width = len(matrix[0])
 
